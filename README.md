@@ -19,6 +19,10 @@ Currently, two official plugins are available:
 4. To change the background of the cell when you hover there will be a small color picker in the bottom right corner to pick any color
 5. There is a button at the top **Add Row** and **Add Column** to add rows and columns accordingly.
 6. On click of **Save** button the json file will be downloaded with all values
-7. You can also import/load the json data in the sheet you have to import the file 
+
+
+## Load the json data 
+
+1. click on choose file to import/load the json data in the sheet 
 
 
