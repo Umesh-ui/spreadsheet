@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { evaluateFormula } from "../utils/formulaParser";
 
 const getColumnLabel = (index) => String.fromCharCode(65 + index);
-const getCellRef = (row, col) => `${getColumnLabel(col)}${row + 1}`;
 
 const Spreadsheet = () => {
   const [rows, setRows] = useState(10);
@@ -11,8 +10,8 @@ const Spreadsheet = () => {
   const [copiedCell, setCopiedCell] = useState(null);
 
   useEffect(() => {
-    const newGrid = Array.from({ length: rows }, (_, r) =>
-      Array.from({ length: cols }, (_, c) => ({
+    const newGrid = Array.from({ length: rows }, () =>
+      Array.from({ length: cols }, () => ({
         value: "",
         bold: false,
         bgColor: "",
@@ -89,18 +88,26 @@ const Spreadsheet = () => {
 
   return (
     <div>
-      <h2>Spreadsheet</h2>
-      <button onClick={addRow} className="addRow">Add Row</button>
-      <button onClick={addCol} className="addCol">Add Column</button>
-      <button onClick={saveJSON} className="save">Save</button>
+      {/* <h2>Spreadsheet</h2> */}
+      <button onClick={addRow} className="addRow">
+        Add Row
+      </button>
+      <button onClick={addCol} className="addCol">
+        Add Column
+      </button>
+      <button onClick={saveJSON} className="save">
+        Save
+      </button>
       <input type="file" accept="application/json" onChange={loadJSON} />
 
-      <table border="1">
+      <table border="1" className="tableContainer">
         <thead>
           <tr>
             <th></th>
             {Array.from({ length: cols }, (_, c) => (
-              <th key={c} className="header">{getColumnLabel(c)}</th>
+              <th key={c} className="header">
+                {getColumnLabel(c)}
+              </th>
             ))}
           </tr>
         </thead>
@@ -122,17 +129,23 @@ const Spreadsheet = () => {
                     pasteCell(r, c);
                   }}
                 >
-                  <input
-                    type="text"
-                    value={grid[r]?.[c]?.value || ""}
-                    onChange={(e) => handleChange(r, c, e.target.value)}
-                    onBlur={() => handleBlur(r, c)}
-                  />
-                  <input
-                    type="color"
-                    onChange={(e) => changeBgColor(r, c, e.target.value)}
-                  className="colorpicker"
-                  />
+                  <div className="cell-box">
+                    <input
+                      type="text"
+                      value={grid[r]?.[c]?.value || ""}
+                      onChange={(e) => handleChange(r, c, e.target.value)}
+                      onBlur={() => handleBlur(r, c)}
+                      style={{
+                        background: grid[r]?.[c]?.bgColor || "white",
+                        fontWeight: grid[r]?.[c]?.bold ? "bold" : "normal",
+                      }}
+                    />
+                    <input
+                      type="color"
+                      onChange={(e) => changeBgColor(r, c, e.target.value)}
+                      className="colorPicker"
+                    />
+                  </div>
                 </td>
               ))}
             </tr>

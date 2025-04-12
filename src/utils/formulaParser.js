@@ -1,6 +1,6 @@
 export const evaluateFormula = (formula, grid) => {
   try {
-    const match = formula.match(/=(SUM|AVERAGE)\(([^)]+)\)/i);
+    const match = formula.match(/=(SUM|AVG)\(([^)]+)\)/i);
     if (!match) return "";
 
     const [, func, range] = match;
@@ -26,7 +26,7 @@ export const evaluateFormula = (formula, grid) => {
     }
 
     if (func === "SUM") return values.reduce((a, b) => a + b, 0);
-    if (func === "AVERAGE")
+    if (func === "AVG")
       return values.reduce((a, b) => a + b, 0) / values.length;
 
     return "";

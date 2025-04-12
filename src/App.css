@@ -14,8 +14,8 @@ table {
 td {
   position: relative;
 }
-.header{
-    padding: 8px;
+.header {
+  padding: 8px;
 }
 input[type="color"] {
   position: absolute;
@@ -26,8 +26,7 @@ input[type="color"] {
   border: none;
 }
 
-.addRow,
-.addCol {
+/* .save {
   border: 0;
   padding: 0.6rem 2rem;
   border-radius: 6px;
@@ -35,22 +34,35 @@ input[type="color"] {
   color: #fff;
   font-weight: 600;
   margin: 1rem;
-}
+} */
+.addRow,
+.addCol,
 .save {
-  border: 1px solid #8d8d8d;
-  padding: 0.6rem 3rem;
-  background: transparent;
+  border: 0;
+  padding: 0.6rem 1rem;
+  background: #25b142;
   border-radius: 6px;
   font-weight: 600;
   margin: 1rem;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  color: #ffffff;
 }
-.save:hover {
+/* .addRow:hover,
+.addCol:hover {
   background-color: #25b142;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
   color: #ffffff;
-  /* border: #25b142; */
-}
-/* .colorpicker{
-    height: 10px;
 } */
+.colorPicker {
+  height: 10px;
+  opacity: 0;
+}
+
+.cell-box:hover .colorPicker {
+  opacity: 1;
+}
+.tableContainer {
+  border-color: #ddd;
+}
